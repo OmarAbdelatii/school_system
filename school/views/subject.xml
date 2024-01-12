@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_subject_form" model="ir.ui.view">
+        <field name="name">subject.form</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="student_ids" widget="many2many_checkboxes"/>
+                    </group>
+                    <group>
+                        <field name="subject_name"/>
+                    </group>
+                    <group>
+                        <field name="year_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    ########          Search View     #########           -->
+    <record id="view_subject_search" model="ir.ui.view">
+        <field name="name">subject.search</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="student_ids"/>
+                <field name="subject_name"/>
+                <field name="year_id"/>
+                <group>
+                    <filter name="by_ids" string="ID" context="{'group_by':'student_ids'}"/>
+                    <filter name="by_subject" string="Subject" context="{'group_by':'subject_name'}"/>
+                    <filter name="by_year" string="Year" context="{'group_by':'year_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!--    ########    Tree View   ##########-->
+    <record model="ir.ui.view" id="subject_view">
+        <field name="name">school.subject.view</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <!--will add decoration based on id -->
+            <tree string="Subject Tree">
+                <field name="subject_name"/>
+                <field name="student_ids" invisible="1"/>
+                <field name="year_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ######### Action Window ########### -->
+    <record id="school_subject_action" model="ir.actions.act_window">
+        <field name="name">Subject</field>
+        <field name="res_model">school.subject</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new subject!
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="subject_menu"
+              name="Subject"
+              parent="parent_menu"
+              action="school_subject_action"
+
+    />
+
+
+</odoo>
+
+

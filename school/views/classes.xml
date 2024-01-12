@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="classes_view">
+        <field name="name">school.classes.view</field>
+        <field name="model">school.classes</field>
+        <field name="arch" type="xml">
+            <tree string="Subject Tree" editable="top">
+                <field name="name_of_class"/>
+                <field name="year_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    ########          Search View     #########           -->
+    <record id="view_class_search" model="ir.ui.view">
+        <field name="name">classes.search</field>
+        <field name="model">school.classes</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name_of_class"/>
+                <field name="year_id"/>
+                <group>
+                    <filter name="by_year" string="Year" context="{'group_by':'year_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--    ###### Action Window ##########-->
+    <record id="shool_class_action" model="ir.actions.act_window">
+        <field name="name">Classes</field>
+        <field name="res_model">school.classes</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new class!
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="class_menu"
+              name="Classes"
+              parent="parent_menu"
+              action="shool_class_action"
+    />
+
+
+</odoo>
+
+

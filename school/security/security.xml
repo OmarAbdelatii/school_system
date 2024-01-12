@@ -1,0 +1,82 @@
+<odoo>
+    <data>
+        <!-- ########Create a school catagory-->
+        <record id="category_school" model="ir.module.category">
+            <field name="name">School</field>
+        </record>
+        <!-- ######## Group of Teachers ###########-->
+        <record id="group_teachers" model="res.groups">
+            <field name="name">Teachers</field>
+            <field name="category_id" ref="category_school"/>
+        </record>
+        <!-- ######## Group of Editors ###########-->
+        <record id="group_data_editor" model="res.groups">
+            <field name="name">School Data Editors</field>
+            <field name="category_id" ref="category_school"/>
+        </record>
+        <!-- ######## Group of Managers ###########-->
+        <record id="group_school_data_Manger" model="res.groups">
+            <field name="name">School Data Managers</field>
+            <field name="category_id" ref="category_school"/>
+        </record>
+        <!-- ######## Every Teacher See Only His Students ###########-->
+        <record model="ir.rule" id="teacher_record_rule">
+            <field name="name">See Only His Students</field>
+            <field name="model_id" ref="model_school_student"/>
+            <field name="domain_force">[('teacher_id','=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('school.group_teachers'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+<!--
+        <record model="ir.rule" id="editor_student_rule">
+            <field name="name">Edit only</field>
+            <field name="model_id" ref="model_school_student"/>
+            <field name="domain_force">[]</field>
+            <field name="groups" eval="[(4, ref('school.group_data_editor'))]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        <record model="ir.rule" id="editor_class_rule">
+            <field name="name">Edit classes only</field>
+            <field name="model_id" ref="model_school_student"/>
+            <field name="domain_force">[]</field>
+            <field name="groups" eval="[(4, ref('school.group_data_editor'))]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record model="ir.rule" id="editor_student_rule">
+            <field name="name">Edit only</field>
+            <field name="model_id" ref="model_school_student"/>
+            <field name="domain_force">[]</field>
+            <field name="groups" eval="[(4, ref('school.group_data_editor'))]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record model="ir.rule" id="Manager_record_rule">
+            <field name="name">See Only His Students</field>
+            <field name="model_id" ref="model_school_student"/>
+            <field name="domain_force">[]</field>
+            <field name="groups" eval="[(4, ref('school.group_teachers'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+-->
+
+    </data>
+
+
+</odoo>

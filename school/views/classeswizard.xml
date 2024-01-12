@@ -1,0 +1,38 @@
+<odoo>
+
+    <record id="classes_wizard" model="ir.ui.view">
+        <field name="name">classes Wizard </field>
+        <field name="model">classeswizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="class_name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+<!--Action Window-->
+    <record id="classes_wizard_action" model="ir.actions.act_window">
+        <field name="name">classes wizard</field>
+        <field name="res_model">classeswizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <!--menu button-->
+
+    <menuitem id="school_report_menu"
+              name="School Reports"
+              parent="parent_menu"
+    />
+
+    <menuitem id="class_report"
+              name="Classes Report"
+              parent="school_report_menu"
+              action="classes_wizard_action"
+    />
+
+
+</odoo>
