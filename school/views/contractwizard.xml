@@ -28,7 +28,7 @@
               parent="hr.menu_hr_root"
     />
 
-    <menuitem id="class_menu"
+    <menuitem id="contract_menu"
               name="generate report"
               parent="report_menu"
               action="contract_wizard_action"

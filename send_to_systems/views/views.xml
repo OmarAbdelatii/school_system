@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="send_to_systems.list">
+      <field name="name">send_to_systems list</field>
+      <field name="model">send_to_systems.send_to_systems</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="send_to_systems.action_window">
+      <field name="name">send_to_systems window</field>
+      <field name="res_model">send_to_systems.send_to_systems</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="send_to_systems.action_server">
+      <field name="name">send_to_systems server</field>
+      <field name="model_id" ref="model_send_to_systems_send_to_systems"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="send_to_systems" id="send_to_systems.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="send_to_systems.menu_1" parent="send_to_systems.menu_root"/>
+    <menuitem name="Menu 2" id="send_to_systems.menu_2" parent="send_to_systems.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="send_to_systems.menu_1_list" parent="send_to_systems.menu_1"
+              action="send_to_systems.action_window"/>
+    <menuitem name="Server to list" id="send_to_systems" parent="send_to_systems.menu_2"
+              action="send_to_systems.action_server"/>
+-->
+  </data>
+</odoo>

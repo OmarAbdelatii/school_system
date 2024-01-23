@@ -9,6 +9,6 @@ class SchoolSubject(models.Model):
 
     student_ids= fields.Many2many("school.student",string="Student ID")
 
-    year_id = fields.Many2one("school.year", string="Year", required=True)
+    year_id = fields.Many2one("school.year", string="Year")
     # SQL Constrain On student_no Field to accept only Unique Student Number
     _sql_constraints = [('subject_unique', 'Check(1=1)',"The Subject Must be Unique")]

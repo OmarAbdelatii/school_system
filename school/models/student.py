@@ -8,7 +8,6 @@ class SchoolStudent(models.Model):
     _description = 'Student Information'
     _rec_name ='student_no'
     student_name = fields.Char(string="Student Name ", required=True)
-    # student_id = fields.Integer(string="Student ID", required=True)
     #Student Number
     student_no = fields.Char(string=" Student Number", required=True)
     birth_of_date = fields.Date(string="Birth of date" ,required=True)

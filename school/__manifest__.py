@@ -2,9 +2,9 @@
 {
     'name': "School",
 
-    'summary': """School System Managment""",
+    'summary': """School Managment""",
 
-    'description': """ Managment School """,
+    'description': """ School """,
 
     'author': "Omar",
     'website': "http://www.yourcompany.com",
@@ -30,7 +30,7 @@
         'views/contractwizard.xml',
         'reports/contract_report.xml',
         'views/classeswizard.xml',
-
+        'reports/classes_report_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
