@@ -19,16 +19,6 @@ class subject_inherit(models.Model):
         vals = {}
         vals['subject_name'] = kwargs['subject_name']
 
-########################################################
-        #domain = [('student_no', '=', kwargs['student_ids'])]
-        #kwargs['student_ids'] = self.env['school.student'].search(domain).id
-
-      #  for rec in range(len(kwargs['student_ids'])):
-
-      #      r[rec] = self.env["school.student"].search([('student_no', '=',rec)]).id
-       #     print("______> ",r)
-       #     vals['student_ids'] = rec
-    ###########################################
 
 
         kwargs['student_ids'] =[[6,0, self.env["school.student"].search([('student_no', 'in',kwargs['student_ids'])]).ids]]

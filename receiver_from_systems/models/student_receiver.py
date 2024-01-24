@@ -44,7 +44,6 @@ class student_inherit(models.Model):
         kwargs['subject_ids'] = [[6,0,self.env["school.subject"].search([('subject_name', 'in', kwargs['subject_ids'])]).ids]]
 
 
-        #kwargs['student_ids'] = [[6, 0, self.env["school.student"].search([('student_no', 'in', kwargs['student_ids'])]).ids]]
 
 
 

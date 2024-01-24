@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-import json
 
-from datetime import datetime, timedelta
-
-from xmlrpc import client as xmlrpc_client
-import ssl
 import requests
 import json
 

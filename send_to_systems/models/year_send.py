@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from datetime import datetime, timedelta
 
-from xmlrpc import client as xmlrpc_client
-import ssl
 import requests
 import json
 
@@ -74,7 +71,7 @@ class send_year_inherit(models.Model):
     def create(self, vals):
         record = super(send_year_inherit, self).create(vals)
 
-        # send student data to other systems
+        # send year data to other systems
         self.send_year_to_systems({'year': record.year, 'no_classes': record.no_classes})
 
         return record

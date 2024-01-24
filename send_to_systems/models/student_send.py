@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-import json
 
-from datetime import datetime, timedelta
-
-from xmlrpc import client as xmlrpc_client
-import ssl
 import requests
 import json
 
@@ -76,7 +71,7 @@ class send_student_inherit(models.Model):
     def create(self, vals):
         record = super(send_student_inherit, self).create(vals)
 
-        # send subject data to other systems
+        # send student data to other systems
         self.send_student_to_systems({'student_name': record.student_name, 'student_no': record.student_no,'birth_of_date': (record.birth_of_date).strftime("%Y-%m-%d"),'teacher_id': record.teacher_id.name,'gender': record.gender,'class_id': record.class_id.name_of_class,'subject_ids':[x.subject_name for x in record.subject_ids]})
 
         return record

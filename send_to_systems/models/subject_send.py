@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-import json
 
-from datetime import datetime, timedelta
-
-from xmlrpc import client as xmlrpc_client
-import ssl
 import requests
 import json
 
@@ -77,8 +72,8 @@ class send_subject_inherit(models.Model):
         record = super(send_subject_inherit, self).create(vals)
 
 
-        #for rec in record.student_ids:
 
+        # send subject data to other systems
 
         self.send_subject_to_systems({'subject_name': record.subject_name, 'year_id': record.year_id.year, 'student_ids': [x.student_no for x in record.student_ids] })
 
