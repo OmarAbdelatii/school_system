@@ -36,3 +36,29 @@ class subject_inherit(models.Model):
         self.env['school.subject'].create(vals)
 
         return True
+
+
+    def write_subject(self, args=[], **kwargs):
+        self = self.sudo()
+
+        # fill data
+        vals = {}
+        vals['subject_name'] = kwargs['subject_name']
+
+        kwargs['student_ids'] =[[6,0, self.env["school.student"].search([('student_no', 'in',kwargs['student_ids'])]).ids]]
+
+        vals['student_ids'] = kwargs['student_ids']
+        kwargs['year_id'] = self.env["school.year"].search([('year', '=',kwargs['year_id'])]).id
+        vals['year_id'] = kwargs['year_id']
+
+
+        self.env['school.subject'].search([('subject_name', '=',kwargs['subject_name'])]).write(vals)
+
+        return True
+
+    def delete_subject(self, args=[], **kwargs):
+        self = self.sudo()
+
+        self.env['school.subject'].search([('subject_name', '=', kwargs['subject_name'])]).unlink()
+
+        return True

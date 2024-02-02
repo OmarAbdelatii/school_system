@@ -35,6 +35,33 @@ class student_inherit(models.Model):
         kwargs['teacher_id'] = self.env["res.users"].search([('name', '=', kwargs['teacher_id'])]).id
         vals['teacher_id'] = kwargs['teacher_id']
 
+        vals['gender'] = kwargs['gender']
+
+        kwargs['class_id'] = self.env["school.classes"].search([('name_of_class', '=', kwargs['class_id'])]).id
+        vals['class_id'] = kwargs['class_id']
+
+        kwargs['subject_ids'] = [[6,0,self.env["school.subject"].search([('subject_name', 'in', kwargs['subject_ids'])]).ids]]
+
+        vals['subject_ids'] = kwargs['subject_ids']
+
+        self.env['school.student'].create(vals)
+
+        return True
+
+
+
+    def write_student(self, args=[], **kwargs):
+        self = self.sudo()
+
+        # fill data
+        vals = {}
+
+        vals['student_name'] = kwargs['student_name']
+        vals['student_no'] = kwargs['student_no']
+        vals['birth_of_date'] = kwargs['birth_of_date']
+
+        kwargs['teacher_id'] = self.env["res.users"].search([('name', '=', kwargs['teacher_id'])]).id
+        vals['teacher_id'] = kwargs['teacher_id']
 
         vals['gender'] = kwargs['gender']
 
@@ -43,12 +70,15 @@ class student_inherit(models.Model):
 
         kwargs['subject_ids'] = [[6,0,self.env["school.subject"].search([('subject_name', 'in', kwargs['subject_ids'])]).ids]]
 
-
-
-
-
         vals['subject_ids'] = kwargs['subject_ids']
 
-        self.env['school.student'].create(vals)
+        self.env['school.student'].search([('student_no', '=', kwargs['student_no'])]).write(vals)
+
+        return True
+
+    def delete_student(self, args=[], **kwargs):
+        self = self.sudo()
+
+        self.env['school.student'].search([('student_no', '=', kwargs['student_no'])]).unlink()
 
         return True

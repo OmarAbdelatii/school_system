@@ -25,3 +25,26 @@ class classes_inherit(models.Model):
 
         return True
 
+    def write_classes(self, args=[], **kwargs):
+        self = self.sudo()
+
+
+        # fill data
+        vals = {}
+        vals['name_of_class'] = kwargs['name_of_class']
+        kwargs['year_id'] = self.env["school.year"].search([('year', '=',kwargs['year_id'])]).id
+        vals['year_id'] = kwargs['year_id']
+
+        print("------->", vals)
+        #self.env['school.year'].search([('year', '=', kwargs['year'])])
+        self.env['school.classes'].search([('name_of_class', '=', kwargs['name_of_class'])]).write(vals)
+
+        return True
+
+    def delete_class(self, args=[], **kwargs):
+        self = self.sudo()
+
+        self.env['school.classes'].search([('name_of_class', '=', kwargs['name_of_class'])]).unlink()
+
+        return True
+
